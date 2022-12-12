@@ -30,41 +30,63 @@ const prayerData = async (req, res) => {
 
     const { document } = new JSDOM(response.data).window;
 
-    const fajar = document
+    const fajarData = document
       .querySelector(".fajar-tile .prayertime")
       .textContent.split(" ")[0];
+
+    const fajar = timeConvert1(
+      moment.duration(fajarData).asMinutes() -
+        moment.duration("0:06").asMinutes()
+    );
 
     const fajarikamath = timeConvert1(
       moment.duration(fajar).asMinutes() + moment.duration("0:20").asMinutes()
     );
 
-    const dhuhur = document
+    const dhuhurData = document
       .querySelector(".dhuhar-tile .prayertime")
       .textContent.split(" ")[0];
+
+    const dhuhur = timeConvert1(
+      moment.duration(dhuhurData).asMinutes() +
+        moment.duration("0:02").asMinutes()
+    );
 
     const dhuhurikamath = timeConvert1(
       moment.duration(dhuhur).asMinutes() + moment.duration("0:20").asMinutes()
     );
 
-    const asr = document
+    const asrData = document
       .querySelector(".asr-tile .prayertime")
       .textContent.split(" ")[0];
 
+    const asr = timeConvert1(
+      moment.duration(asrData).asMinutes() + moment.duration("0:01").asMinutes()
+    );
     const asrikamath = timeConvert1(
       moment.duration(asr).asMinutes() + moment.duration("0:15").asMinutes()
     );
-    const maghrib = document
+    const maghribData = document
       .querySelector(".maghrib-tile .prayertime")
       .textContent.split(" ")[0];
+
+    const maghrib = timeConvert1(
+      moment.duration(maghribData).asMinutes() +
+        moment.duration("0:02").asMinutes()
+    );
 
     const maghribikamath = timeConvert1(
       moment.duration(maghrib).asMinutes() + moment.duration("0:03").asMinutes()
     );
 
-    const isha = document
+    const ishaData = document
       .querySelector(".isha-tile .prayertime")
       .textContent.split(" ")[0];
 
+    const isha = timeConvert1(
+      moment.duration(ishaData).asMinutes() +
+        moment.duration("0:01").asMinutes()
+    );
     const ishaikamath = timeConvert1(
       moment.duration(isha).asMinutes() + moment.duration("0:20").asMinutes()
     );
